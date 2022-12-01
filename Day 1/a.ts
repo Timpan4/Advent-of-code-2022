@@ -45,6 +45,9 @@ interface countedGroup {
     position: number;
 }
 
+// function separateGroups(input: string) {
+//     return input.split("\r\n\r\n").map((group) => group.split("\r\n"));
+// }
 function separateGroups(input: string) {
     return input.split("\r\n\r\n").map((group, position) => {
         //return object with group and the position of the group
@@ -93,5 +96,13 @@ let result = loopThroughGroups(groups, countTotal);
 
 console.log(returnHighest(result));
 
-// console.log(input);
+// console.log([input]);
 // console.log(separateGroups(input)[0]);
+
+// oneliner because why not
+let res = input
+    .split("\r\n\r\n")
+    .map((group) => group.split("\r\n").reduce((a, b) => +a + +b, 0))
+    .reduce((a, b) => Math.max(a, b), 0);
+
+console.log("res", res);
